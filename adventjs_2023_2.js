@@ -1,15 +1,14 @@
 function manufacture(gifts, materials) {
-  // Code here
-  let returnGifts = [];
-  let materialsChars = materials.split("");
+  const returnGifts = [];
+  const materialsChars = materials.split("");
 
-  gifts.forEach((gift) => {
+  for (const gift of gifts) {
     const giftChars = gift.split("");
-    let found = giftChars.every((char) => materialsChars.includes(char));
+    const found = giftChars.every((char) => materialsChars.includes(char));
     if (found) {
       returnGifts.push(gift);
     }
-  });
+  }
 
   return returnGifts;
 }

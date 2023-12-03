@@ -1,13 +1,12 @@
 function findFirstRepeated(gifts) {
   // hash table with gift as key and if it was visited as value
-  let visitedGifts = {};
+  const visitedGifts = [];
 
-  for (let i = 0; i < gifts.length; i++) {
-    let gift = gifts[i];
-    if (visitedGifts[gift]) {
+  for (const gift of gifts) {
+    if (visitedGifts.includes(gift)) {
       return gift;
     }
-    visitedGifts[gift] = true;
+    visitedGifts.push(gift);
   }
 
   return -1;
