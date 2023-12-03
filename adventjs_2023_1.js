@@ -1,5 +1,6 @@
 function findFirstRepeated(gifts) {
-  let visitedGifts = {}; // hash table with gift as key and if it was visited as value
+  // hash table with gift as key and if it was visited as value
+  let visitedGifts = {};
 
   for (let i = 0; i < gifts.length; i++) {
     let gift = gifts[i];
@@ -12,9 +13,9 @@ function findFirstRepeated(gifts) {
   return -1;
 }
 
-const giftIds = [2, 1, 3, 5, 3, 2];
-const firstRepeatedId = findFirstRepeated(giftIds);
-console.log(firstRepeatedId); // 3
+const giftIds1 = [2, 1, 3, 5, 3, 2];
+const firstRepeatedId1 = findFirstRepeated(giftIds1);
+console.log(firstRepeatedId1); // 3
 // Aunque el 2 y el 3 se repiten
 // el 3 aparece primero por segunda vez
 
