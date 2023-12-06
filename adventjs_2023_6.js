@@ -1,49 +1,42 @@
-function cyberReindeer(road, time) {
-  let followedRoute = [];
-  followedRoute.push(road);
+function maxDistance(movements) {
+  let movementsArray = [...movements];
+  let leftMovements = 0;
+  let rightMovements = 0;
+  let randomMovements = 0;
 
-  let ongoingRoad = [...road];
-
-  let reinderSlot = ".";
-  let reinderPos = 0;
-
-  for (let i = 1; i < time; i++) {
-    if (i === 5) {
-      ongoingRoad = [...ongoingRoad.join("").replaceAll("|", "*")];
+  movementsArray.forEach((movement) => {
+    switch (movement) {
+      case "<":
+        leftMovements++;
+        break;
+      case ">":
+        rightMovements++;
+        break;
+      case "*":
+        randomMovements++;
+        break;
     }
-    if (ongoingRoad[reinderPos + 1] === "|") {
-      followedRoute.push(ongoingRoad.join(""));
-      continue;
-    }
+  });
 
-    reinderPos++;
-    ongoingRoad[reinderPos - 1] = reinderSlot;
-    reinderSlot = ongoingRoad[reinderPos];
-    ongoingRoad[reinderPos] = "S";
+  let returnValue;
 
-    followedRoute.push(ongoingRoad.join(""));
+  if (leftMovements > rightMovements) {
+    returnValue = leftMovements + randomMovements - rightMovements;
+  } else {
+    returnValue = rightMovements + randomMovements - leftMovements;
   }
 
-  return followedRoute;
+  return returnValue;
 }
 
-const road = "S..|...|..";
-const time = 10; // unidades de tiempo
-const result = cyberReindeer(road, time);
+const movements = ">>*<";
+const result = maxDistance(movements);
+console.log(result); // -> 2
 
-console.log(result);
+const movements2 = "<<<>";
+const result2 = maxDistance(movements2);
+console.log(result2); // -> 2
 
-/* -> result:
-[
-  'S..|...|..', // estado inicial
-  '.S.|...|..', // avanza el trineo la carretera
-  '..S|...|..', // avanza el trineo la carretera
-  '..S|...|..', // el trineo para en la barrera
-  '..S|...|..', // el trineo para en la barrera
-  '...S...*..', // se abre la barrera, el trineo avanza
-  '...*S..*..', // avanza el trineo la carretera
-  '...*.S.*..', // avanza el trineo la carretera
-  '...*..S*..', // avanza el trineo la carretera
-  '...*...S..', // avanza por la barrera abierta
-]
-*/
+const movements3 = ">***>";
+const result3 = maxDistance(movements3);
+console.log(result3); // -> 5
